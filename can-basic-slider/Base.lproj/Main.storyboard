@@ -28,14 +28,16 @@
                                     <action selector="sliderAction:forEvent:" destination="BYZ-38-t0r" eventType="valueChanged" id="Dv6-k1-QdS"/>
                                 </connections>
                             </slider>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sax-ZJ-iQG" userLabel="min input">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sax-ZJ-iQG" userLabel="min input">
                                 <rect key="frame" x="16" y="267" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="minAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="lu8-du-w0u"/>
+                                    <action selector="minChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="JeC-C4-OFz"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="e9U-hh-Cse"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Uc-4uz" userLabel="max input">
@@ -46,6 +48,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
                                     <action selector="maxAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="mne-TJ-Fuo"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oHb-uo-rbm"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGf-mu-TSm">
