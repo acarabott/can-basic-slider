@@ -56,10 +56,5 @@ class ViewController: UIViewController, UITextFieldDelegate {
     slider.maximumValue = Float(sender.text!) ?? 1.0;
   }
 
-  @IBAction func minChanged(_ sender: UITextField) {
-    print("min changed");
-  }
-
-
 }
 
