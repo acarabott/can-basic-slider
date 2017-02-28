@@ -14,13 +14,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var slider: UISlider!
   @IBOutlet weak var min: UITextField!
   @IBOutlet weak var max: UITextField!
+  @IBOutlet weak var number: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     min.delegate = self;
     max.delegate = self;
-    min.text = "0.0";
-    max.text = "1.0";
+    min.text = String(slider.minimumValue);
+    max.text = String(slider.maximumValue);
+    number.text = String(slider.value);
   }
 
   override func didReceiveMemoryWarning() {
@@ -37,15 +39,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    print("did end editing!");
   }
 
   // MARK: Actions
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
-    print(sender.value);
-    min.resignFirstResponder();
-    max.resignFirstResponder();
+    number.text = String(format: "%4.2f", sender.value);
+
+    if min.isFirstResponder {
+      min.resignFirstResponder();
+    }
+    if max.isFirstResponder {
+      max.resignFirstResponder();
+    }
   }
 
   @IBAction func minAction(_ sender: UITextField) {
