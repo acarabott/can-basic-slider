@@ -44,7 +44,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
   // MARK: Actions
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
-    number.text = String(format: "%4.2f", sender.value);
+    // adjust precision based on size of range
+    let range = slider.maximumValue - slider.minimumValue;
+    let step = pow(10.0, floor(log10(range))) / 100.0;
+    let remainder = sender.value.truncatingRemainder(dividingBy: step);
+    let rounded = sender.value - remainder;
+
+    number.text = String(rounded);
 
     if min.isFirstResponder {
       min.resignFirstResponder();
@@ -63,4 +69,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
 
 }
-
