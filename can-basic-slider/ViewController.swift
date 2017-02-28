@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
   // MARK: Properties
   @IBOutlet weak var slider: UISlider!
+  @IBOutlet weak var min: UITextField!
+  @IBOutlet weak var max: UITextField!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,6 +29,14 @@ class ViewController: UIViewController {
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
     print(sender.value);
+  }
+
+  @IBAction func minAction(_ sender: UITextField) {
+    slider.minimumValue = Float(sender.text!) ?? 0;
+  }
+
+  @IBAction func maxAction(_ sender: UITextField) {
+    slider.maximumValue = Float(sender.text!) ?? 1.0;
   }
 
 }
