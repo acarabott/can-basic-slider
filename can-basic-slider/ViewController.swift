@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     max.delegate = self;
     max.text = String(slider.maximumValue);
 
-    number.text = String(slider.value);
+    setValue(value: slider.value, step: getStep());
   }
 
   override func didReceiveMemoryWarning() {
@@ -42,16 +42,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   func textFieldDidEndEditing(_ textField: UITextField) {}
 
+  // MARK: helpers
+
+  func getStep() -> Float {
+    let range = slider.maximumValue - slider.minimumValue;
+    return pow(10.0, floor(log10(range))) / 100.0;
+  }
+
+  func getFormat(step: Float) -> String {
+    // if step is 0.0 log10(step) will be NaN
+    if step >= 1.0 || step == 0.0 {
+      return "%.0f";
+    }
+    let places = Int(abs(log10(step)));
+    return "%.\(places)f";
+  }
+
+  func setValue(value: Float, step: Float = 0.1) {
+    number.text = String(format: getFormat(step: step), value);
+  }
+
   // MARK: Actions
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
     // adjust precision based on size of range
-    let range = slider.maximumValue - slider.minimumValue;
-    let step = pow(10.0, floor(log10(range))) / 100.0;
+    let step = getStep();
     let remainder = sender.value.truncatingRemainder(dividingBy: step);
     let rounded = sender.value - remainder;
-
-    number.text = String(rounded);
+    setValue(value: rounded, step: step);
 
     if min.isFirstResponder {
       min.resignFirstResponder();
