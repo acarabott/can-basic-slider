@@ -78,7 +78,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pK-ZM-qar">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pK-ZM-qar" userLabel="OSC View">
                                 <rect key="frame" x="16" y="599" width="343" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -95,6 +95,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="QO9-RL-pba"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Port" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5N-qQ-zqn">
                                         <rect key="frame" x="244" y="31" width="33" height="21"/>
@@ -109,6 +112,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="pbl-e0-6H6"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OSC /set" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-Ut-SMN">
                                         <rect key="frame" x="136" y="0.0" width="78" height="21"/>
@@ -127,6 +133,9 @@
                         <outlet property="max" destination="KhD-Uc-4uz" id="tnZ-4Q-vBS"/>
                         <outlet property="min" destination="Sax-ZJ-iQG" id="K5n-Ri-M10"/>
                         <outlet property="number" destination="xKf-f0-ZNx" id="dAM-jc-1VY"/>
+                        <outlet property="oscAddressField" destination="7yd-xY-iHU" id="xke-f7-Ebq"/>
+                        <outlet property="oscPortField" destination="1Hq-cF-TtV" id="GAf-A4-MYT"/>
+                        <outlet property="oscView" destination="3pK-ZM-qar" id="O2I-SN-Lg3"/>
                         <outlet property="slider" destination="LXY-KO-eaN" id="QVK-Qe-Px7"/>
                     </connections>
                 </viewController>
