@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OSCKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -19,6 +20,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var minMaxHidden = false;
   var sliderSmallFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
   var sliderBigFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
+
+  let oscClient = OSCClient.init();
+  let dest = "udp://192.168.0.6:6666"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,6 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func setValue(value: Float, step: Float = 0.1) {
     let err = "min > max";
     number.text = value.isNaN ? err : String(format: getFormat(step: step), value);
+    oscClient.send(OSCMessage.init(address: "/set", arguments: [value]), to: dest)
   }
 
   // MARK: Actions

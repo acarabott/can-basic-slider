@@ -1,0 +1,6 @@
+framework module Pods_can_basic_sliderUITests {
+  umbrella header "Pods-can-basic-sliderUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
