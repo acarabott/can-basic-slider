@@ -41,7 +41,7 @@
                                 </accessibility>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
                                     <action selector="minAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="lu8-du-w0u"/>
                                     <action selector="minChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="JeC-C4-OFz"/>
