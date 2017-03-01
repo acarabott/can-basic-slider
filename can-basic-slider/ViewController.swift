@@ -27,7 +27,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var oscViewDefaultY: CGFloat = 0.0;
 
   let oscClient = OSCClient.init();
-  let dest = "udp://192.168.0.6:6666"
+  var oscPort = 6666;
+  var oscAddr = "192.168.0.6";
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -60,6 +61,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                    selector: #selector(keyboardWillHide),
                                    name: .UIKeyboardWillHide,
                                    object: nil);
+
+    oscAddr = oscAddressField.text!;
+    oscPort = Int(oscPortField.text!)!;
   }
 
   override func didReceiveMemoryWarning() {
@@ -134,7 +138,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func setValue(value: Float, step: Float = 0.1) {
     let err = "min > max";
     number.text = value.isNaN ? err : String(format: getFormat(step: step), value);
-    oscClient.send(OSCMessage.init(address: "/set", arguments: [value]), to: dest)
+
+    if !value.isNaN {
+      oscClient.send(OSCMessage.init(address: "/set", arguments: [value]), to: getOscDst())
+    }
   }
 
   func resignFirstResponders() {
@@ -144,6 +151,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
       }
     }
   }
+
+  func getOscDst() -> String {
+    return "udp://\(oscAddr):\(oscPort)";
+  }
+
 
   // MARK: Actions
 
@@ -164,6 +176,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   @IBAction func maxAction(_ sender: UITextField) {
     slider.maximumValue = Float(sender.text!) ?? 1.0;
+  }
+
+  @IBAction func oscAddrEnd(_ sender: UITextField) {
+    oscAddr = sender.text ?? "192.168.0.6";
+  }
+
+  @IBAction func oscPortEnd(_ sender: UITextField) {
+    oscPort = Int(sender.text!) ?? 6666;
   }
 
   // MARK: Tap Gesture Recognizers

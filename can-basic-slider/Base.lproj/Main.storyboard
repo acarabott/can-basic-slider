@@ -85,6 +85,7 @@
                                         <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
+                                            <action selector="oscAddrEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="nst-Y4-mth"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="QO9-RL-pba"/>
                                         </connections>
                                     </textField>
@@ -102,6 +103,7 @@
                                         <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                         <connections>
+                                            <action selector="oscPortEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ijg-E9-9uc"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="pbl-e0-6H6"/>
                                         </connections>
                                     </textField>
