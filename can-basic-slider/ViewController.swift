@@ -16,15 +16,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var max: UITextField!
   @IBOutlet weak var number: UILabel!
 
+  var minMaxHidden = false;
+  var sliderSmallFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
+  var sliderBigFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
+
   override func viewDidLoad() {
     super.viewDidLoad()
     min.delegate = self;
     min.text = String(slider.minimumValue);
+    min.isHidden = minMaxHidden;
 
     max.delegate = self;
     max.text = String(slider.maximumValue);
+    max.isHidden = minMaxHidden;
 
     setValue(value: slider.value, step: getStep());
+
+    sliderSmallFrame = slider.frame;
+    sliderBigFrame = slider.frame;
+    let marginWidth = view.layoutMargins.left + view.layoutMargins.right;
+    sliderBigFrame.size.width = view.frame.width - marginWidth;
+    sliderBigFrame.origin.x = view.layoutMargins.left;
   }
 
   override func didReceiveMemoryWarning() {
@@ -89,4 +101,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     slider.maximumValue = Float(sender.text!) ?? 1.0;
   }
 
+  @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
+    minMaxHidden = !minMaxHidden;
+    min.isHidden = minMaxHidden;
+    max.isHidden = minMaxHidden;
+    slider.frame = minMaxHidden ? sliderBigFrame : sliderSmallFrame;
+  }
 }
