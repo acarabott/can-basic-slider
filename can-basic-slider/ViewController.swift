@@ -59,16 +59,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
 
   func setValue(value: Float, step: Float = 0.1) {
-    number.text = String(format: getFormat(step: step), value);
+    let err = "min > max";
+    number.text = value.isNaN ? err : String(format: getFormat(step: step), value);
   }
 
   // MARK: Actions
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
     // adjust precision based on size of range
+    let value = sender.value;
     let step = getStep();
-    let remainder = sender.value.truncatingRemainder(dividingBy: step);
-    let rounded = sender.value - remainder;
+    let remainder = value.truncatingRemainder(dividingBy: step);
+    let rounded = remainder < step ? value : value - remainder;
     setValue(value: rounded, step: step);
 
     if min.isFirstResponder {
