@@ -166,10 +166,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     slider.maximumValue = Float(sender.text!) ?? 1.0;
   }
 
+  // MARK: Tap Gesture Recognizers
+
   @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
     minMaxHidden = !minMaxHidden;
     min.isHidden = minMaxHidden;
     max.isHidden = minMaxHidden;
     slider.frame = minMaxHidden ? sliderBigFrame : sliderSmallFrame;
+  }
+
+  @IBAction func singleTap(_ sender: Any) {
+    resignFirstResponders();
   }
 }
