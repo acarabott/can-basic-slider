@@ -19,9 +19,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     min.delegate = self;
-    max.delegate = self;
     min.text = String(slider.minimumValue);
+
+    max.delegate = self;
     max.text = String(slider.maximumValue);
+
     number.text = String(slider.value);
   }
 
@@ -38,8 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     return true;
   }
 
-  func textFieldDidEndEditing(_ textField: UITextField) {
-  }
+  func textFieldDidEndEditing(_ textField: UITextField) {}
 
   // MARK: Actions
 
