@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var min: UITextField!
   @IBOutlet weak var max: UITextField!
   @IBOutlet weak var number: UILabel!
+  @IBOutlet weak var container: UIView!
 
   var minMaxHidden = false;
   var sliderSmallFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
@@ -34,8 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     sliderSmallFrame = slider.frame;
     sliderBigFrame = slider.frame;
-    let marginWidth = view.layoutMargins.left + view.layoutMargins.right;
-    sliderBigFrame.size.width = view.frame.width - marginWidth;
+    sliderBigFrame.size.width = container.frame.width;
     sliderBigFrame.origin.x = view.layoutMargins.left;
   }
 
