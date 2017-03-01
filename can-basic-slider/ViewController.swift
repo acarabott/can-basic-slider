@@ -21,8 +21,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var oscPortField: UITextField!
 
   var minMaxHidden = false;
-  var sliderSmallFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
-  var sliderBigFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
+  var focusedTextField: UITextField?;
+  var sliderSmallFrame: CGRect!;
+  var sliderBigFrame: CGRect!;
   var oscViewDefaultY: CGFloat = 0.0;
 
   let oscClient = OSCClient.init();
@@ -68,8 +69,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   // MARK: keyboard
   func keyboardWillShow(notification: Notification) {
-    if let keyboardRect = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+    if let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
       self.view.frame.origin.y = -keyboardRect.size.height;
+//      // only move the view up if the keyboard would cover the textfield
+//      let absFrame = focusedTextField!.convert(focusedTextField!.frame, to: self.view);
+//      let absCorner = CGPoint(x: absFrame.origin.x + absFrame.size.width,
+//                              y: absFrame.origin.y + absFrame.size.height);
+//
+//      let absKeyboardRect = focusedTextField!.convert(keyboardRect, from: self.view);
+//
+//      print("absFrame.origin", absFrame.origin);
+//      print("absCorner", absCorner);
+//      print("keyboardRect", keyboardRect);
+//      print("absKeyboardRect", absKeyboardRect);
+//
+//      if absKeyboardRect.contains(absFrame.origin) {
+//        print("abs origin");
+//      }
+//      if absKeyboardRect.contains(absCorner) {
+//        print("abs corner");
+//      }
+//      if [absFrame.origin, absCorner].contains(where: { absKeyboardRect.contains($0); }) {
+//        self.view.frame.origin.y = -absKeyboardRect.size.height;
+//      }
     }
   }
 
@@ -79,13 +101,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   // MARK: UITextFieldDelegate
 
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    focusedTextField = textField;
+  }
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     // hide the keyboard
     textField.resignFirstResponder();
     return true;
   }
 
-  func textFieldDidEndEditing(_ textField: UITextField) {}
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    focusedTextField = nil;
+  }
 
   // MARK: helpers
 
