@@ -39,7 +39,7 @@
                                 </connections>
                             </slider>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.0" placeholder="0.0" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Sax-ZJ-iQG" userLabel="min input">
-                                <rect key="frame" x="8" y="379.5" width="54" height="30"/>
+                                <rect key="frame" x="8" y="379" width="54" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" adjustable="YES"/>
@@ -51,17 +51,6 @@
                                     <action selector="minAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="lu8-du-w0u"/>
                                     <action selector="minChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="JeC-C4-OFz"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="e9U-hh-Cse"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.0" placeholder="1.0" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Uc-4uz" userLabel="max input">
-                                <rect key="frame" x="305" y="377.5" width="54" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="maxAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="mne-TJ-Fuo"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oHb-uo-rbm"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="xKf-f0-ZNx" userLabel="number">
@@ -126,6 +115,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.0" placeholder="1.0" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="KhD-Uc-4uz" userLabel="max input">
+                                <rect key="frame" x="305" y="379" width="54" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="maxAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="mne-TJ-Fuo"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oHb-uo-rbm"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
