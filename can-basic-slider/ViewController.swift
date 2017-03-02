@@ -121,9 +121,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   // MARK: helpers
 
-  func getStep() -> Float {
+  func getStepForRounding() -> Float {
     let range = slider.maximumValue - slider.minimumValue;
-    return pow(10.0, floor(log10(range))) / 100.0;
+    return pow(10.0, floor(log10(range)));
+  }
+
+  func getStep() -> Float {
+    return getStepForRounding() / 100.0;
   }
 
   func getFormat(step: Float) -> String {
@@ -161,11 +165,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   @IBAction func sliderAction(_ sender: UISlider, forEvent event: UIEvent) {
     // adjust precision based on size of range
-    let value = sender.value;
-    let step = getStep();
+    let value = sender.value * 100.0;
+    let step = getStepForRounding();
     let remainder = value.truncatingRemainder(dividingBy: step);
-    let rounded = remainder < step ? value : value - remainder;
-    setValue(value: rounded, step: step);
+    let rounded = (value - remainder) / 100.0;
+    setValue(value: rounded, step: getStep());
 
     resignFirstResponders();
   }
