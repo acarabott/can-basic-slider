@@ -123,6 +123,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
   func getStepForRounding() -> Float {
     let range = slider.maximumValue - slider.minimumValue;
+
+    if range >= 100.0 {
+      return 100.0;
+    }
+
     return pow(10.0, floor(log10(range)));
   }
 
