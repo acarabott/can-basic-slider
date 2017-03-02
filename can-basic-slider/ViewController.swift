@@ -19,11 +19,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var oscView: UIView!
   @IBOutlet weak var oscAddressField: UITextField!
   @IBOutlet weak var oscPortField: UITextField!
+  @IBOutlet weak var sliderWrap: UIView!
 
+  var sideBySide = false;
   var minMaxHidden = false;
   var focusedTextField: UITextField?;
-  var sliderSmallFrame: CGRect!;
-  var sliderBigFrame: CGRect!;
+
+  var sliderWrapFrameSBS: CGRect!;
+  var sliderWrapFrameNorm: CGRect!;
+  var numberFrameSBS: CGRect!;
+  var numberFrameNorm: CGRect!;;
+
   var oscViewDefaultY: CGFloat = 0.0;
 
   let oscClient = OSCClient.init();
@@ -42,11 +48,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     setValue(value: slider.value, step: getStep());
 
-    sliderSmallFrame = slider.frame;
-    sliderBigFrame = slider.frame;
-    let marginWidth = view.layoutMargins.left + view.layoutMargins.right;
-    sliderBigFrame.size.width = view.frame.width - marginWidth;
-    sliderBigFrame.origin.x = view.layoutMargins.left;
+    numberFrameNorm = number.frame;
+    numberFrameSBS = number.frame;
+    numberFrameSBS.size.width = view.frame.width / 2.0;
+    numberFrameSBS.origin.x = view.frame.width / 2.0;
+
+    sliderWrapFrameNorm = sliderWrap.frame;
+    sliderWrapFrameSBS = sliderWrap.frame;
+    sliderWrapFrameSBS.size.width = view.frame.width / 2.0;
+    // fudging it!
+    sliderWrapFrameSBS.origin.y = numberFrameSBS.origin.y +
+                                  numberFrameSBS.size.height * 0.3;
+
+
 
 
     oscAddressField.delegate = self;
@@ -198,13 +212,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
   // MARK: Tap Gesture Recognizers
 
   @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
+    print("double tap");
     minMaxHidden = !minMaxHidden;
     min.isHidden = minMaxHidden;
     max.isHidden = minMaxHidden;
-    slider.frame = minMaxHidden ? sliderBigFrame : sliderSmallFrame;
+    if minMaxHidden {
+      slider.frame.size.width = sliderWrap.frame.width - view.layoutMargins.left;
+      slider.frame.origin.x = sliderWrap.frame.origin.x + sliderWrap.layoutMargins.left;
+    }
+    else {
+      let width = sliderWrap.frame.width -
+        sliderWrap.layoutMargins.left -
+        sliderWrap.layoutMargins.right -
+        min.frame.width -
+        max.frame.width;
+
+      slider.frame.size.width = width;
+      slider.frame.origin.x = min.frame.origin.x + min.frame.size.width;
+    }
   }
 
   @IBAction func singleTap(_ sender: Any) {
     resignFirstResponders();
+  }
+
+  override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    if motion == .motionShake {
+      sideBySide = !sideBySide;
+
+      sliderWrap.frame = sideBySide ? sliderWrapFrameSBS : sliderWrapFrameNorm;
+      number.frame = sideBySide ? numberFrameSBS : numberFrameNorm;
+    }
   }
 }
