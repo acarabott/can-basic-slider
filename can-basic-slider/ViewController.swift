@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBOutlet weak var min: UITextField!
   @IBOutlet weak var max: UITextField!
   @IBOutlet weak var number: UILabel!
-  @IBOutlet weak var oscView: UIView!
   @IBOutlet weak var oscAddressField: UITextField!
   @IBOutlet weak var oscPortField: UITextField!
   @IBOutlet weak var sliderWrap: UIView!
@@ -29,8 +28,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var sliderWrapFrameNorm: CGRect!;
   var numberFrameSBS: CGRect!;
   var numberFrameNorm: CGRect!;;
-
-  var oscViewDefaultY: CGFloat = 0.0;
 
   let oscClient = OSCClient.init();
   var oscPort = 6666;
@@ -60,12 +57,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     sliderWrapFrameSBS.origin.y = numberFrameSBS.origin.y +
                                   numberFrameSBS.size.height * 0.3;
 
-
-
-
     oscAddressField.delegate = self;
     oscPortField.delegate = self;
-    oscViewDefaultY = oscView.frame.origin.y;
+
     let notificationCenter = NotificationCenter.default;
     notificationCenter.addObserver(self,
                                    selector: #selector(keyboardWillShow),
