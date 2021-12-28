@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   var sliderWrapFrameSBS: CGRect!;
   var sliderWrapFrameNorm: CGRect!;
   var numberFrameSBS: CGRect!;
-  var numberFrameNorm: CGRect!;;
+  var numberFrameNorm: CGRect!;
 
   let oscClient = OSCClient.init();
   var oscPort = 6666;
